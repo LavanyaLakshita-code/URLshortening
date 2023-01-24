@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Space+Mono&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                        Cyan: "hsl(180, 66%, 49%)",
+                        DarkViolet: "hsl(257, 27%, 26%)",
+                        Red: "hsl(0, 87%, 67%)",
+                        Gray: "hsl(0, 0%, 75%)",
+                        GrayishViolet: "hsl(257, 7%, 63%)",
+                        VeryDarkBlue: "hsl(255, 11%, 22%)",
+                        VeryDarkViolet: "hsl(260, 8%, 14%)",
+                        SkyBlue: "#9be3e2",
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./index.js"></script>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-size: 18px;
+        }
+
+        @media only screen and (max-width: 639px) and (min-width: 320px) {
+            #sec2 {
+                margin-top: 20px;
+            }
+
+            #sec5 {
+                width: 100%;
+            }
+
+            #sec5div {
+                width: 100%;
+            }
+
+            #sec3 {
+                height: 150px;
+            }
+
+            #sec3div {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+            }
+
+            #sec3 button {
+                margin-top: 10px;
+            }
+
+            #sec6 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #sec7 {
+                height: 150px;
+            }
+
+            #sec7div {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (max-width: 765px) and (min-width: 640px) {
+            #sec2 {
+                margin-top: 20px;
+            }
+
+            #sec6 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #logo {
+                width: 100px;
+                display: flex;
+                align-items: center;
+            }
+
+
+        }
+    </style>
+    <title>URL Shortening</title>
+</head>
+
+<body height="100%" width="100%">
+
+    <!-- Navbar -->
+    <nav class="pt-0.5 bg-light-800">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8" style="font-size:18px;">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="right-0 absolute inset-y-0 flex items-center sm:hidden">
+                    <!-- Mobile menu button-->
+                    <button type="button"
+                        class=" inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <!--
+            Icon when menu is closed.
+
+            Heroicon name: outline/bars-3
+
+            Menu open: "hidden", Menu closed: "block"
+          -->
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                        <!--
+            Icon when menu is open.
+
+            Heroicon name: outline/x-mark
+
+            Menu open: "block", Menu closed: "hidden"
+          -->
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Navbar Options -->
+                <div id="nav" class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                            <a id="logo" href="#"
+                                class="sm:visible bg-light-900 text-black px-3 py-2 rounded-md text-xl font-bold"
+                                aria-current="page"><img src="./images/logo.svg" /></a>
+
+                            <a href="#"
+                                class="text-GrayishViolet hover:text-VeryDarkBlue px-3 py-4 rounded-md text-xs font-medium">Features</a>
+
+                            <a href="#"
+                                class="text-GrayishViolet hover:text-VeryDarkBlue px-3 py-4 rounded-md text-xs font-medium">Pricing</a>
+
+                            <a href="#"
+                                class="text-GrayishViolet hover:text-VeryDarkBlue px-3 py-4 rounded-md text-xs font-medium">Resources</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Login/Signup -->
+                <div
+                    class="absolute inset-y-0 flex items-center mr-24 sm:static sm:inset-auto sm:ml-6 sm:pr-0 sm:invisible lg:visible">
+                    <div class="relative ml-3">
+                        <div>
+                            <a href="#"
+                                class="hover:bg-SkyBlue hover:text-white text-GrayishViolet px-3 py-2 rounded-full text-xs font-medium w-3"
+                                aria-current="page">Login</a>
+                            <a href="#"
+                                class="hover:bg-SkyBlue bg-Cyan hover:text-white text-white px-3 py-2 rounded-full text-xs font-medium"
+                                aria-current="page">Signup</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!--Section2 -->
+    <div id="sec2" class="mt-5 container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
+        <div class="mb-16 lg:mt-32 xl:mt-20 xl:mr-12 px-14">
+            <h1 class="text-VeryDarkBlue text-5xl font-bold mb-5 ">More than just <br /> shorter links</h1>
+            <p class="p-large mb-8 text-GrayishViolet">Build your brand's recognition and get detailed insights on how
+                your links are
+                performing.</p>
+            <a href="#"
+                class="flex bg-Cyan text-white hover:bg-SkyBlue hover:text-white px-3 py-2 rounded-full text-xs font-bold w-32 h-10 justify-center items-center"
+                aria-current="page">Get Started</a>
+        </div>
+        <div class="xl:text-right mb-16 lg:mt-32 xl:mt-10 pl-14 w-full">
+            <img src="./images/illustration-working.svg" alt="" />
+        </div>
+    </div>
+
+    <!-- Section3 -->
+    <div id="sec3" class="mb-4 flex justify-center mt-2 relative">
+        <img src="./images/bg-shorten-desktop.svg" />
+        <div id="sec3div" class="absolute top-1/2 left-1/2 w-9/12 flex justify-center"
+            style="transform: translate(-50%, -50%);">
+            <input class="shadow appearance-none border rounded w-9/12 py-2 px-3 text-gray-700 leading-tight
+                focus:outline-none focus:shadow-outline mr-2" id="inputUrl" type="text"
+                placeholder="Shorten a link here...">
+            <button class="flex-shrink-0  bg-Cyan hover:bg-SkyBlue font-bold hover:border-teal-700 
+                text-white py-1 px-2 rounded h-10 text-xs w-32" type="button" onclick="postData()">
+                Shorten it!
+            </button>
+        </div>
+    </div>
+
+    <!-- Section4 -->
+    <div class="mt-10 mb-10 flex flex-col items-center">
+        <div id="contentDiv"
+            class="hidden w-10/12 h-11/12 p-4 flex mb-4 justify-evenly border-2 border-Gray border-solid shadow-sm shadow-gray-500/50">
+            <p id="getUrl" value=""></p>
+            <button onclick="copyContent()" id="button"
+                class="font-bold text-xs hover:bg-SkyBlue bg-Cyan text-white w-16 h-8 rounded-md">Copy</button>
+        </div>
+    </div>
+
+    <!-- section5 -->
+    <div class="mb-4 flex justify-center p-14" style=" position: relative;
+    text-align: center;" id="sec5">
+        <div class="m-auto absolute left-1/2 top-1/2" style="
+        transform: translate(-50%, -50%);
+      " id="sec5div">
+            <h1 class="text-VeryDarkBlue font-bold text-2xl leading-10">Advanced Statistics</h1>
+            <p id="sec5p" class="text-xs text-GrayishViolet leading-5">Track how your links are performing across the
+                web with
+                <br /> our advanced statistics dashboard.
+            </p>
+        </div>
+    </div>
+
+    <!-- section6 -->
+    <div id="sec6" class="flex justify-center mt-12 mb-12 p-3">
+
+        <div class="border-2 border-solid border-Gray mt-3 max-w-xs rounded shadow-2xl mr-4 relative w-64 h-40">
+            <div class="bg-DarkViolet absolute h-12 flex justify-center items-center w-12 rounded-full"
+                style=" left:10%; top:-20px;">
+                <img class="h-5 w-5" src="./images/icon-brand-recognition.svg" alt="Sunset in the mountains">
+            </div>
+
+            <div class="px-6 py-4">
+                <div class="font-bold text-l mb-2 mt-4">Brand Recognition</div>
+                <p class="text-gray-700 text-xs">
+                    Boost your brand recognition with each click. Generic links don't mean a thing.
+                    Branded links help instil confidence in your cotent.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-9 border-2 border-solid border-Gray max-w-xs rounded shadow-2xl mr-4 relative w-64 h-40">
+            <div class="bg-DarkViolet absolute h-12 flex justify-center items-center w-12 rounded-full"
+                style=" left:10%; top:-20px;">
+                <img class="h-5 w-5" src="./images/icon-detailed-records.svg" alt="Sunset in the mountains">
+            </div>
+            <div class="px-6 py-4">
+                <div class="font-bold text-l mb-2 mt-4">Detailed Records</div>
+                <p class="text-gray-700 text-xs">
+                    Gain insight into who is clicking your links.Knowing whom and where people engage with your content
+                    helps inform better decisions.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-16 border-2 border-solid border-Gray  max-w-xs rounded shadow-2xl mr-4 relative w-64 h-40">
+            <div class="bg-DarkViolet absolute h-12 flex justify-center items-center w-12 rounded-full"
+                style=" left:10%; top:-20px;">
+                <img class="h-5 w-5" src="./images/icon-fully-customizable.svg" alt="Sunset in the mountains">
+            </div>
+            <div class="px-6 py-4">
+                <div class="font-bold text-l mb-2 mt-4">Fully Customizable</div>
+                <p class="text-gray-700 text-xs">
+                    improve brand awareness and content discoverability through customizable links.supercharging
+                    audience engagement.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- section7 -->
+    <div id="sec7" class="flex pt-2" style=" position: relative;
+    text-align: center;
+    color: white;">
+        <img src="./images/bg-boost-desktop.svg" />
+        <div id="sec7div" class="m-auto absolute top-1/2 left-1/2" style="
+        transform: translate(-50%, -50%);
+      ">
+            <h3 class="text-black font-bold text-2xl leading-10">Boost your links today</h3>
+            <a href="#"
+                class=" hover:bg-SkyBlue bg-Cyan hover:text-white text-white px-3 py-2 rounded-full text-xs font-medium w-3"
+                aria-current="page">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-sm text-center bg-VeryDarkViolet text-white" style="font-size:10px;">
+        <div class="container px-6 pt-6">
+            <div class="grid lg:grid-cols-5 md:grid-cols-2 mt-6">
+                <div class="mb-6">
+                    <h5 class="font-bold mb-2.5 text-xl">Shortly</h5>
+                </div>
+
+                <div class="mb-6">
+                    <h5 class="font-bold mb-2.5 text-xs">Features</h5>
+                    <ul class="list-none mb-0 text-xs">
+                        <li class="mb-2 ">
+                            <a href="#!" class="text-white">Link Shortening</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">Branded Links</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">Analytics</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mb-6">
+                    <h5 class="font-bold mb-2.5 text-xs">Resources</h5>
+                    <ul class="list-none mb-0 text-xs">
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">Blog</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">Developers</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">Support</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mb-6">
+                    <h5 class="font-bold mb-2.5 text-xs">Company</h5>
+                    <ul class="list-none mb-0 text-xs">
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">About</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">Our Team</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">Careers</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flex justify-center mb-6">
+                    <a class="m-1">
+                        <img src="./images/icon-facebook.svg" style="height:20px; width:20px;" />
+                    </a>
+                    <a class="m-1">
+                        <img src="./images/icon-twitter.svg" style="height:20px; width:20px;" />
+                    </a>
+                    <a class="m-1">
+                        <img src="./images/icon-pinterest.svg" style="height:20px; width:20px;" />
+                    </a>
+                    <a class="m-1">
+                        <img src="./images/icon-instagram.svg" style="height:20px; width:20px;" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center p-4 text-xs" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 Copyright:
+            <a class="text-white" href="">Lavanya Lakshita</a>
+        </div>
+    </footer>
+</body>
+
+</html>
