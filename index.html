@@ -25,6 +25,9 @@
                         VeryDarkBlue: "hsl(255, 11%, 22%)",
                         VeryDarkViolet: "hsl(260, 8%, 14%)",
                         SkyBlue: "#9be3e2",
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
                     }
                 }
             }
@@ -41,6 +44,26 @@
             font-size: 18px;
         }
 
+        #anchor {
+            position: relative;
+            display: inline-block;
+        }
+
+        #anchor:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 0;
+            height: 2px;
+            background-color: grey;
+            transition: width .5s ease-in-out;
+        }
+
+        #anchor:hover:after {
+            width: 100%;
+        }
+
         @media only screen and (max-width: 639px) and (min-width: 320px) {
             #sec2 {
                 margin-top: 20px;
@@ -55,14 +78,32 @@
             }
 
             #sec3 {
-                height: 150px;
+                height: 180px;
             }
 
             #sec3div {
                 display: flex;
                 flex-direction: column;
-                width: 100%;
                 align-items: center;
+                width: 100%;
+                padding-left: 15px;
+            }
+
+            #inputUrl {
+                width: 300px;
+                padding-left: 10px;
+            }
+
+            #er-msg {
+                width: 300px;
+                font-size: 8px;
+                padding-left: 10px;
+            }
+
+            #dot {
+                width: 300px;
+                font-size: 8px;
+                padding-left: 10px;
             }
 
             #sec3 button {
@@ -100,11 +141,10 @@
                 display: flex;
                 align-items: center;
             }
-
-
         }
     </style>
     <title>URL Shortening</title>
+    <link rel="icon" type="image/x-icon" href="./images/icon-fully-customizable.svg">
 </head>
 
 <body height="100%" width="100%">
@@ -115,7 +155,7 @@
             <div class="relative flex h-16 items-center justify-between">
                 <div class="right-0 absolute inset-y-0 flex items-center sm:hidden">
                     <!-- Mobile menu button-->
-                    <button type="button"
+                    <button type="button" onclick=""
                         class=" inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                         aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
@@ -143,6 +183,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
+
                 </div>
 
                 <!-- Navbar Options -->
@@ -153,18 +194,17 @@
                                 class="sm:visible bg-light-900 text-black px-3 py-2 rounded-md text-xl font-bold"
                                 aria-current="page"><img src="./images/logo.svg" /></a>
 
-                            <a href="#"
+                            <a id="anchor" href="#"
                                 class="text-GrayishViolet hover:text-VeryDarkBlue px-3 py-4 rounded-md text-xs font-medium">Features</a>
 
-                            <a href="#"
+                            <a id="anchor" href="#"
                                 class="text-GrayishViolet hover:text-VeryDarkBlue px-3 py-4 rounded-md text-xs font-medium">Pricing</a>
 
-                            <a href="#"
+                            <a id="anchor" href="#"
                                 class="text-GrayishViolet hover:text-VeryDarkBlue px-3 py-4 rounded-md text-xs font-medium">Resources</a>
                         </div>
                     </div>
                 </div>
-
                 <!-- Login/Signup -->
                 <div
                     class="absolute inset-y-0 flex items-center mr-24 sm:static sm:inset-auto sm:ml-6 sm:pr-0 sm:invisible lg:visible">
@@ -183,7 +223,6 @@
             </div>
         </div>
     </nav>
-
     <!--Section2 -->
     <div id="sec2" class="mt-5 container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
         <div class="mb-16 lg:mt-32 xl:mt-20 xl:mr-12 px-14">
@@ -205,20 +244,27 @@
         <img src="./images/bg-shorten-desktop.svg" />
         <div id="sec3div" class="absolute top-1/2 left-1/2 w-9/12 flex justify-center"
             style="transform: translate(-50%, -50%);">
-            <input class="shadow appearance-none border rounded w-9/12 py-2 px-3 text-gray-700 leading-tight
-                focus:outline-none focus:shadow-outline mr-2" id="inputUrl" type="text"
-                placeholder="Shorten a link here...">
+            <div class="flex flex-col mr-2">
+                <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight
+                focus:outline-none focus:shadow-outline mr-2 mb-2 2xl:w-96 xl:w-96 lg:w-96 md:w-96 sm: " id="inputUrl"
+                    type="text" placeholder="Shorten a link here...">
+                <span class="text-Red font-12 text-xs 2xl:w-96 xl:w-96 lg:w-96 md:w-96 sm: " id='er-msg'>
+                </span>
+                <span id="dot"
+                    class="cursor-pointer text-Red font-12 text-xs hidden 2xl:w-96 xl:w-96 lg:w-96 md:w-96 sm: ">...</span>
+            </div>
             <button class="flex-shrink-0  bg-Cyan hover:bg-SkyBlue font-bold hover:border-teal-700 
                 text-white py-1 px-2 rounded h-10 text-xs w-32" type="button" onclick="postData()">
                 Shorten it!
             </button>
         </div>
+
     </div>
 
     <!-- Section4 -->
     <div class="mt-10 mb-10 flex flex-col items-center">
         <div id="contentDiv"
-            class="hidden w-10/12 h-11/12 p-4 flex mb-4 justify-evenly border-2 border-Gray border-solid shadow-sm shadow-gray-500/50">
+            class="hidden w-10/12 h-11/12 p-4 mb-4 justify-evenly border-2 border-Gray border-solid shadow-sm shadow-gray-500/50">
             <p id="getUrl" value=""></p>
             <button onclick="copyContent()" id="button"
                 class="font-bold text-xs hover:bg-SkyBlue bg-Cyan text-white w-16 h-8 rounded-md">Copy</button>
@@ -359,16 +405,16 @@
                 </div>
 
                 <div class="flex justify-center mb-6">
-                    <a class="m-1">
+                    <a class="m-1 cursor-pointer hover:animate-pulse" href="https://www.facebook.com/" target="_blank">
                         <img src="./images/icon-facebook.svg" style="height:20px; width:20px;" />
                     </a>
-                    <a class="m-1">
+                    <a class="m-1 cursor-pointer hover:animate-pulse" href="https://twitter.com/" target="_blank">
                         <img src="./images/icon-twitter.svg" style="height:20px; width:20px;" />
                     </a>
-                    <a class="m-1">
+                    <a class="m-1 cursor-pointer hover:animate-pulse" href="https://in.pinterest.com/" target="_blank">
                         <img src="./images/icon-pinterest.svg" style="height:20px; width:20px;" />
                     </a>
-                    <a class="m-1">
+                    <a class="m-1 cursor-pointer hover:animate-pulse" href="https://www.instagram.com/" target="_blank">
                         <img src="./images/icon-instagram.svg" style="height:20px; width:20px;" />
                     </a>
                 </div>

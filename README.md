@@ -18,7 +18,6 @@
 
 
 
-
 <!-- About Project -->
 View the optimal layout for the site depending on their device's screen size
 Shorten any valid URL
