@@ -158,6 +158,15 @@
                 width: 30px;
             }
         }
+
+        /* @media only screen and (max-width: 1023px) and (min-width: 640px) {
+            #arrow-cont {
+                border: 1px solid red;
+                display: flex;
+                width: 100%;
+                justify-content: center;
+            }
+        } */
     </style>
     <title>URL Shortening</title>
     <link rel="icon" type="image/x-icon" href="./images/icon-fully-customizable.svg">
@@ -369,7 +378,7 @@
     <footer class="text-sm text-center bg-VeryDarkViolet text-white" style="font-size:10px;">
         <div class="container px-6 pt-6">
             <div class="grid lg:grid-cols-5 md:grid-cols-2 mt-6">
-                <div class="mb-6">
+                <div>
                     <h5 class="font-bold mb-2.5 text-xl">Shortly</h5>
                 </div>
 
@@ -440,11 +449,10 @@
                     </a>
                 </div>
 
-                <a class="cursor-pointer w-10 mb-2" href="#">
-                    <img src="./images/up-arrow.png" height="40" width="40" id="up-arrow" />
-                </a>
-
             </div>
+            <a class="cursor-pointer w-10 ml-4" href="#" id="arrow-cont">
+                <img src="./images/up-arrow.png" height="40" width="40" id="up-arrow" />
+            </a>
         </div>
 
         <div class="text-center p-4 text-xs" style="background-color: rgba(0, 0, 0, 0.2);">
