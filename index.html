@@ -34,7 +34,7 @@
         }
     </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./index.js"></script>
+   
     <style>
         * {
             font-family: 'Poppins', sans-serif;
@@ -224,6 +224,7 @@
         </div>
     </nav>
     <!--Section2 -->
+   
     <div id="sec2" class="mt-5 container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
         <div class="mb-16 lg:mt-32 xl:mt-20 xl:mr-12 px-14">
             <h1 class="text-VeryDarkBlue text-5xl font-bold mb-5 ">More than just <br /> shorter links</h1>
@@ -246,8 +247,8 @@
             style="transform: translate(-50%, -50%);">
             <div class="flex flex-col mr-2">
                 <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight
-                focus:outline-none focus:shadow-outline mr-2 mb-2 2xl:w-96 xl:w-96 lg:w-96 md:w-96 sm: " id="inputUrl"
-                    type="text" placeholder="Shorten a link here...">
+                    focus:outline-none focus:shadow-outline mr-2 mb-2 2xl:w-96 xl:w-96 lg:w-96 md:w-96 sm: "
+                    id="inputUrl" type="text" placeholder="Shorten a link here...">
                 <span class="text-Red font-12 text-xs 2xl:w-96 xl:w-96 lg:w-96 md:w-96 sm: " id='er-msg'>
                 </span>
                 <span id="dot"
@@ -265,7 +266,7 @@
     <div class="mt-10 mb-10 flex flex-col items-center">
         <div id="contentDiv"
             class="hidden w-10/12 h-11/12 p-4 mb-4 justify-evenly border-2 border-Gray border-solid shadow-sm shadow-gray-500/50">
-            <p id="getUrl" value=""></p>
+            <p id="getUrl"></p>
             <button onclick="copyContent()" id="button"
                 class="font-bold text-xs hover:bg-SkyBlue bg-Cyan text-white w-16 h-8 rounded-md">Copy</button>
         </div>
@@ -426,6 +427,7 @@
             <a class="text-white" href="">Lavanya Lakshita</a>
         </div>
     </footer>
+    <script src="./index.js"></script>
 </body>
 
 </html>
