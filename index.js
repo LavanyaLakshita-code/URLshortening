@@ -54,6 +54,7 @@ function postData() {
     }
 }
 
+// to copy short link
 const copyContent = async () => {
     let text = document.getElementById('getUrl').innerHTML;
     let btn = document.getElementById("button");
