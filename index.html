@@ -40,6 +40,10 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-size: 18px;
         }
@@ -63,6 +67,8 @@
         #anchor:hover:after {
             width: 100%;
         }
+
+
 
         @media only screen and (max-width: 639px) and (min-width: 320px) {
             #sec2 {
@@ -123,6 +129,11 @@
             #sec7div {
                 width: 100%;
             }
+
+            #up-arrow {
+                height: 20px;
+                width: 20px;
+            }
         }
 
         @media only screen and (max-width: 765px) and (min-width: 640px) {
@@ -140,6 +151,11 @@
                 width: 100px;
                 display: flex;
                 align-items: center;
+            }
+
+            #up-arrow {
+                height: 30px;
+                width: 30px;
             }
         }
     </style>
@@ -406,19 +422,28 @@
                 </div>
 
                 <div class="flex justify-center mb-6">
-                    <a class="m-1 cursor-pointer hover:animate-pulse" href="https://www.facebook.com/" target="_blank">
+                    <a class="m-1 cursor-pointer hover:animate-pulse hover:bg-cyan-600 h-5"
+                        href="https://www.facebook.com/" target="_blank">
                         <img src="./images/icon-facebook.svg" style="height:20px; width:20px;" />
                     </a>
-                    <a class="m-1 cursor-pointer hover:animate-pulse" href="https://twitter.com/" target="_blank">
+                    <a class="m-1 cursor-pointer hover:animate-pulse hover:bg-cyan-600 h-5" href="https://twitter.com/"
+                        target="_blank">
                         <img src="./images/icon-twitter.svg" style="height:20px; width:20px;" />
                     </a>
-                    <a class="m-1 cursor-pointer hover:animate-pulse" href="https://in.pinterest.com/" target="_blank">
+                    <a class="m-1 cursor-pointer hover:animate-pulse hover:bg-cyan-600 h-5"
+                        href="https://in.pinterest.com/" target="_blank">
                         <img src="./images/icon-pinterest.svg" style="height:20px; width:20px;" />
                     </a>
-                    <a class="m-1 cursor-pointer hover:animate-pulse" href="https://www.instagram.com/" target="_blank">
+                    <a class="m-1 cursor-pointer hover:animate-pulse hover:bg-cyan-600 h-5"
+                        href="https://www.instagram.com/" target="_blank">
                         <img src="./images/icon-instagram.svg" style="height:20px; width:20px;" />
                     </a>
                 </div>
+
+                <a class="cursor-pointer w-10 mb-2" href="#">
+                    <img src="./images/up-arrow.png" height="40" width="40" id="up-arrow" />
+                </a>
+
             </div>
         </div>
 
